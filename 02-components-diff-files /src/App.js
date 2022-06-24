@@ -4,6 +4,7 @@ import {sayHello,sayGoodbye,foobar} from './Funcs'
 import Alert from './Alert';
 import BorderedImage from './BorderedImage';
 import PuppyImage from './PuppyImage';
+import ClickCount from './ClickCount';
 
 
 
@@ -31,6 +32,7 @@ export default function App(){
       <BorderedImage ImageFile = {require('./dog.jpg')}/>
       <PuppyImage/>
       <Sumoftwo n1={3} n2={6}/>
+      <ClickCount/>
     </React.Fragment>
   )
 }
