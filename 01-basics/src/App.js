@@ -10,9 +10,8 @@ function App(){
   // only one parent is allowed ---  so can lump 2 or more elements under a div or fragment
   return(
     <React.Fragment>
-      <h1 style={{
+      <h1 className="urgent" style={{
         color:"green",
-        backgroundColor:"yellow"
       }}>Hello World</h1>
     <p>Let there be light</p>
     <img src={logo}/>

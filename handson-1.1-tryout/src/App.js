@@ -23,7 +23,7 @@ export default function App(){
       </div>
     </section>
     <section id="about-us">
-      <div class="content">
+      <div className="content">
         <h1>Cute dogs for adoption</h1>
       </div>
     </section>
