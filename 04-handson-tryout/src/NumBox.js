@@ -21,7 +21,7 @@ export default class NumBox extends React.Component{
 
 
        color = () =>{
-        let  textcolor = "purple"
+        let  textcolor = "grey"
         if(this.state.count < 0){
             textcolor = "red"
         }
