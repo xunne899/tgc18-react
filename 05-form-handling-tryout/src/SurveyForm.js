@@ -114,8 +114,30 @@ export default class SurveyForm extends React.Component{
 
 
 
+render(){
 
-    render(){
+// // 1. check if the value is already in the array
+// let currentValues = this.state[e.target.name];
+// let modifiedValues;
+
+// // 2. Check if the currently checked checkboxes' values include the target checkbox we just changed
+// if (!currentValues.includes(e.target.value)) {
+// // if the target checkbox's value does not exist in the array of currently checked values, it means we are checking the checkbox, so we add the value to the array
+// 	modifiedValues = [...currentValues, e.target.value];
+// } else {
+// 	// the value is already in the array, means we are unchecking
+// 	// so we should remove the checkbox's value from the array
+// 	modifiedValues = currentValues.filter((element)=>{
+// 		// return true if we want to keep this particular element
+// 		// keep the element that we didn't just uncheck
+// 		return element !== e.target.value;
+// 	})
+// }
+
+// this.setState({
+// 	[e.target.name]: modifiedValues
+// })
+
         return(
             <React.Fragment>
             <div>
