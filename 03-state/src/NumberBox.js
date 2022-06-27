@@ -3,7 +3,7 @@ import React from 'react'
 export default class NumberBox extends React.Component{
 //  class must have render
 state ={
-    "count": 10
+    "count": this.props.initialValue
 }
 // 
 render(){
