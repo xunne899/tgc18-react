@@ -1,5 +1,5 @@
 import React from 'react'
-export default class NumBox extends React.Component{
+export default class Counter extends React.Component{
 
     state = {
         count : 0
@@ -19,7 +19,6 @@ export default class NumBox extends React.Component{
         })
        }
 
-
        color = () =>{
         let  textcolor = "grey"
         if(this.state.count < 0){
@@ -35,8 +34,8 @@ render(){
     return ( 
 
 <React.Fragment>
-<div style={{ border: "2px solid red",height: "40px",width: "40px",marginTop: "10px",padding: "10px" ,marginLeft: "10px",color:this.color()}}>
-          {this.state.count}{ this.state.count % 2 === 0 ? <p>Number is even</p> : null}
+<div style={{ border: "2px solid red",height: "60px",width: "60px",marginTop: "10px",padding: "10px" ,marginLeft: "10px",color:this.color()}}>
+{ this.state.count % 2 === 0 ? <p> {this.state.count}<br/>Even</p> : null}
 </div>
     <button style= {{marginLeft: "10px"}} onClick={this.increment}>+</button>
     <button onClick={this.decrement}>-</button>
