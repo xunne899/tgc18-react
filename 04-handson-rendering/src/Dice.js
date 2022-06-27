@@ -3,13 +3,20 @@ import React from 'react'
 
 export default class Dice extends React.Component{
 
+    // state = {
+    //     count: 0 
+    // }
+ roll(){
+    return Math.floor(Math.random()*6 + 1)
+ }
     state = {
-        count: 0 
+        count:  this.roll(),
+        color:'black'
     }
 
     click = () =>{
         this.setState({
-            count : Math.floor(Math.random()*6 + 1)
+            count : this.roll()
         })
     }
 
