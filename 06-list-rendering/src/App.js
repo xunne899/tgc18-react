@@ -1,5 +1,6 @@
 import React from 'react'
 import Book from './Book'
+import SurveyForm from './SurveyForm';
 export default class App extends React.Component {
   state = {
     fruits:["apples", "oranges", "pineapples", "durians"],
@@ -68,7 +69,7 @@ export default class App extends React.Component {
         </ul>
         <h1>Books</h1>
         {this.renderBooks()}
-
+       <SurveyForm/>
       </React.Fragment>
     )
   }

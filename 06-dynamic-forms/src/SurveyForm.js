@@ -237,7 +237,7 @@ export default class SurveyForm extends React.Component {
                 <div>
                     <label>Country</label>
                     <select className="form-control" value={this.state.country} onChange={this.updateCountry}>
-                        <option value="singapore">Singapore</option>
+                        {/* <option value="singapore">Singapore</option> */}
                         {this.countries.map( c =><option value={c.value} key={c.value}>
                             {c.display}
                         </option>)}
