@@ -45,12 +45,43 @@ export default class SurveyForm1 extends React.Component{
         })
     }
 
+  //   updateContacts = (event) => {
+  //     // is the checkbox that is being clicked on already checked or unchecked?
+  //     if (this.state.contacts.includes(event.target.value)) {
+  //         // the user is unchecking the checkbox
+  //         let indexToRemove = this.state.contacts.indexOf(event.target.value);
+
+  //         // 1. clone the array
+  //         let cloned = this.state.contacts.slice();
+  //         // 2. modify the cloned array (removing the element at indexToRemove)
+  //         cloned.splice(indexToRemove, 1);
+  //         // 3. replace the original array in the state with the cloned
+  //         this.setState({
+  //             'contacts': cloned
+  //         })
+
+
+  //     } else {
+  //         // the user is checking the checkbox
+  //         // 1. clone the array
+  //         let cloned = this.state.contacts.slice();
+  //         // 2. modify the cloned array
+  //         cloned.push(event.target.value);
+  //         // 3. replace the cloned array into the state
+  //         this.setState({
+  //             'contacts': cloned
+  //         })
+  //     }
+  // }
+
+
+
     updateContact = (e) => {
         if (this.state.contacts.includes(e.target.value)) {
           // case 1: the checkbox has already been checked, and now it's being unchecked
           // 1. clone
           const clone = this.state.contacts.slice();
-          // 2. modify
+          // 2. modify (removing element at indexToremove)
           const indexToRemove = this.state.contacts.findIndex(function (c) {
             return c === e.target.value;
           });
@@ -62,6 +93,7 @@ export default class SurveyForm1 extends React.Component{
         } else {
           // case 2: the checkbox has not been checked and now it's being checked
           // 1. clone the array
+          // const clone = this.state.contacts.slice();
           const clone = [...this.state.contacts];
           // 2. modify the clone
           clone.push(e.target.value);
@@ -103,13 +135,13 @@ render(){
             </select>
         </div>
         <div>
-        <label>Contact:</label> 
+        <label>Contact Form:</label> 
         <input type="checkbox" name="contacts" value="email" onChange={this.updateContact} checked={this.state.contacts.includes('email')}/>
-        <a>Email</a>
+        <label>Email</label>
         <input type="checkbox" name="contacts" value="phone" onChange={this.updateContact} checked={this.state.contacts.includes('phone')}/>
-        <a>Phone</a>
+        <label>Phone</label>
         <input type="checkbox" name="contacts" value="mail" onChange={this.updateContact} checked={this.state.contacts.includes('mail')}/>
-        <a>Mail</a>
+        <label>Mail</label>
         </div>
         <button onClick = {this.clickSubmit}>Submit</button>
         </React.Fragment>

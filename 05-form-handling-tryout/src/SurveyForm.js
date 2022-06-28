@@ -3,11 +3,57 @@ import React from 'react'
 export default class SurveyForm extends React.Component{
     state = {
         'name':'',
+        'email':'',
         'color':'',
         'country':'',
-        'fruits':[]
+        'fruits':[],
+        'hasSubmitted':false
     }
 
+
+getNameError = () =>{
+  if( this.state.name.length <3){
+    return "Name must have more than 3 characters"
+  } else if( this.state.name >20){
+    return "Name must not exceed 20 characters"
+  } else {
+    return null
+  }
+}
+
+
+getEmailError = () => {
+  if (this.state.email.includes('@') === false) {
+      return "The email is in the wrong format";
+  } else {
+      return null;
+  }
+}
+
+submit = () => {
+     
+  this.setState({
+      'hasSubmitted': true
+  })
+
+  // check if there is no error
+  if (this.getNameError()===null && this.getEmailError()===null) {
+      alert("All data is ok!")
+  } 
+}
+
+
+submit = () => {
+     
+  this.setState({
+      'hasSubmitted': true
+  })
+
+  // check if there is no error
+  if (this.getNameError()===null && this.getEmailError()===null) {
+      alert("All data is ok!")
+  } 
+}
 
     updateFormField =(e)=>{
         this.setState({
@@ -269,7 +315,11 @@ render(){
             <React.Fragment>
             <div>
                 <label>Name:</label>
-                <input name="name" type="text" value={this.state.name} onChange={this.updateFormField}/>
+                <input name="name" type="text" value={this.state.name} onChange={this.updateFormField}/>{this.getNameError() && this.state.hasSubmitted ? <span className="error">{this.getNameError()}</span> : ""}
+            </div>
+            <div>
+                <label>Email:</label>
+                <input name="email" type="text" value={this.state.email} onChange={this.updateFormField}/>{this.getEmailError() && this.state.hasSubmitted ? <span className="error">{this.getEmailError()}</span> : ''}
             </div>
             <div>
                 <label>Favourite Color:</label>
@@ -292,7 +342,7 @@ render(){
                 <input type="checkbox" name="fruits" value="banana" onChange={this.updateFruitsV} checked={this.state.fruits.includes('banana')}/>Banana
                 <input type="checkbox" name="fruits" value="durian" onChange={this.updateFruitsV} checked={this.state.fruits.includes('durian')}/>Durian
             </div>
-            <button>Submit</button>
+            <button onClick={this.submit}>Submit</button>
             </React.Fragment>
         )
     }
