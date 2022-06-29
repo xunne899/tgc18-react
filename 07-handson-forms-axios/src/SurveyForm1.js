@@ -168,7 +168,7 @@ render(){
         {
                             this.state.allContacts.map( c =><React.Fragment key={c.value}>
                           
-                                <input type="checkbox" onChange={this.updateContact} className="form-check-input" value={c.value} checked={this.state.contacts.includes(c.value)} />
+                                <input type="checkbox" onChange={this.updateContact} className="form-check-input" value={c.value}  checked={this.state.contacts.includes(c.value)}/>
                                 <label className="form-check-label">{c.display}</label>
                             </React.Fragment>)
                         }
