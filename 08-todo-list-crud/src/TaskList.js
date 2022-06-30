@@ -119,6 +119,12 @@ export default class TaskList extends React.Component {
                     }}
 
                 >Edit</button>
+                
+                <button 
+                className="ms-3 btn btn-primary btn-sm"
+                onClick={()=>{
+                    this.deleteTask(task)
+                }}>Delete</button>
             </li>
         )
     }
@@ -130,6 +136,22 @@ export default class TaskList extends React.Component {
                    className="btn btn-primary btn-sm ms-3">Update</button>
         </li>)
     }
+
+    deleteTask = (task) => {
+        // find the index of the task that we want to delete
+        let index = this.state.tasks.findIndex( t => t._id === task._id);
+
+        // remove from the middle technique
+        const cloned = [
+            ...this.state.tasks.slice(0, index),
+            ...this.state.tasks.slice(index+1)
+        ]
+
+        this.setState({
+            tasks: cloned
+        })
+    }
+
 
     updateTask = () => {
         const modifiedTask = {
@@ -160,7 +182,12 @@ export default class TaskList extends React.Component {
             tasks: cloned,
             taskBeingEdited: null
         })
+    
+   
+    
     }
+
+
 
     render() {
         return (<React.Fragment>
