@@ -27,6 +27,7 @@ export default class TaskList  extends React.Component{
         taskBeingEdited:{
             _id:0
         },
+        taskBeingDeleted: null,
 
        
     }
@@ -103,6 +104,67 @@ export default class TaskList  extends React.Component{
              }
          })
     }
+
+    // deleteUser = (task) => {
+    //     this.setState({
+    //       taskBeingDeleted: task
+    //     });
+    //   };
+    
+
+    // displayDeleteUser = (task) => {
+    //     return (
+    //       <React.Fragment>
+    //         Are you want the user? (user name: {task.name})
+    //         <button
+    //           onClick={() => {
+    //             this.processDeleteUser(task);
+    //           }}
+    //         >
+    //           Yes
+    //         </button>
+    //         <button
+    //           onClick={() => {
+    //             this.setState({
+    //               taskBeingDeleted: null
+    //             });
+    //           }}
+    //         >
+    //           No
+    //         </button>
+    //       </React.Fragment>
+    //     );
+    //   };
+
+
+    //   processDeleteUser = (task) => {
+    //     let indexToDelete = this.state.task.findIndex((u) => u._id === task._id);
+    
+    //     if (indexToDelete === -1) {
+    //       return;
+    //     }
+    
+    //     let cloned = this.state.tasks.slice();
+    
+    //     cloned.splice(indexToDelete, 1);
+    
+    //     this.setState({
+    //       tasks: cloned,
+    //       taskBeingDeleted: null
+    //     });
+    //   };
+
+    delete = (task) => {
+        const index = this.state.tasks.findIndex(t => t._id === task._id);
+        const modified = [
+            ...this.state.tasks.slice(0, index),  // get all the elements before the index to delete
+            ...this.state.tasks.slice(index+1)    // get all the elements after the index to delete
+        ]
+        this.setState({
+            tasks: modified
+        })
+    }
+
     render(){
         return(
             <React.Fragment>
@@ -115,6 +177,8 @@ export default class TaskList  extends React.Component{
                                 task={t} key={t._id} 
                                 updateTaskDone={this.updateTaskDone}
                                 beginEdit={this.beginEdit}
+                                delete ={this.delete}
+
                                />
                             } else {
                                 return <EditTask key={t._id} 
@@ -133,4 +197,4 @@ export default class TaskList  extends React.Component{
             </React.Fragment>
         )
     }
-} 
+}
