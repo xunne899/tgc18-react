@@ -80,7 +80,7 @@ export default class TaskList  extends React.Component{
     beginEdit =(task)=>{
         this.setState ({
             taskBeingEdited: task,
-            modifiedDescription: task.description
+            modifiedTaskDescription: task.description
         })
     }
 

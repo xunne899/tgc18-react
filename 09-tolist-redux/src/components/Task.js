@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function Task(props){
     return(
+        <React.Fragment>
         <li class="list-group-item">
                             <label className="form-check-label me-2">{props.task.description}</label> 
                             <input className="form-check-input" 
@@ -12,6 +13,7 @@ export default function Task(props){
                                 props.beginEdit(props.task)
                             }}>Edit</button>
                           </li>
+       </React.Fragment>
 
     )
 }
