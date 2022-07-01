@@ -2,6 +2,7 @@ import React from 'react'
 import AddNewTask from './components/AddNewTask'
 import Task from './components/Task'
 import EditTask from './components/EditTask'
+import DeleteTask from './components/DeleteTask'
 export default class TaskList  extends React.Component{
     state={
         'tasks':[
@@ -27,7 +28,9 @@ export default class TaskList  extends React.Component{
         taskBeingEdited:{
             _id:0
         },
-        taskBeingDeleted: null,
+        taskBeingDeleted:{
+            _id:0
+        },
 
        
     }
@@ -105,36 +108,55 @@ export default class TaskList  extends React.Component{
          })
     }
 
-    // deleteUser = (task) => {
-    //     this.setState({
-    //       taskBeingDeleted: task
-    //     });
-    //   };
-    
+    delete = (task) => {
+        const index = this.state.tasks.findIndex(t => t._id === task._id);
+        const modified = [
+            ...this.state.tasks.slice(0, index),  // get all the elements before the index to delete
+            ...this.state.tasks.slice(index+1)    // get all the elements after the index to delete
+        ]
+        this.setState({
+            tasks: modified
+        })
+      };
+      
+      beginDelete = (task)=>{
+        this.setState ({
+            taskBeingDeleted: task,
+        })
+      }
 
-    // displayDeleteUser = (task) => {
-    //     return (
-    //       <React.Fragment>
-    //         Are you want the user? (user name: {task.name})
-    //         <button
-    //           onClick={() => {
-    //             this.processDeleteUser(task);
-    //           }}
-    //         >
-    //           Yes
-    //         </button>
-    //         <button
-    //           onClick={() => {
-    //             this.setState({
-    //               taskBeingDeleted: null
-    //             });
-    //           }}
-    //         >
-    //           No
-    //         </button>
-    //       </React.Fragment>
-    //     );
-    //   };
+
+      cancelDelete = (task)=>{
+        this.setState ({
+            taskBeingDeleted: {
+            _id: 0,
+        }
+        })
+      }
+
+    displayDeleteUser = (task) => {
+        return (
+          <React.Fragment>
+            Are you want the user? (user name: {task.name})
+            <button
+              onClick={() => {
+                this.processDeleteUser(task);
+              }}
+            >
+              Yes
+            </button>
+            <button
+              onClick={() => {
+                this.setState({
+                  taskBeingDeleted: null
+                });
+              }}
+            >
+              No
+            </button>
+          </React.Fragment>
+        );
+      };
 
 
     //   processDeleteUser = (task) => {
@@ -154,15 +176,8 @@ export default class TaskList  extends React.Component{
     //     });
     //   };
 
-    delete = (task) => {
-        const index = this.state.tasks.findIndex(t => t._id === task._id);
-        const modified = [
-            ...this.state.tasks.slice(0, index),  // get all the elements before the index to delete
-            ...this.state.tasks.slice(index+1)    // get all the elements after the index to delete
-        ]
-        this.setState({
-            tasks: modified
-        })
+    processDeleteUser = (task) => {
+  
     }
 
     render(){
@@ -172,20 +187,30 @@ export default class TaskList  extends React.Component{
                 <ul>
                     {
                         this.state.tasks.map(t=>{
-                            if (this.state.taskBeingEdited._id !== t._id) {
+                            if (this.state.taskBeingEdited._id !== t._id && this.state.taskBeingDeleted._id !==t._id) {
                                 return <Task
                                 task={t} key={t._id} 
                                 updateTaskDone={this.updateTaskDone}
                                 beginEdit={this.beginEdit}
-                                delete ={this.delete}
+                                deleteTask ={this.deleteTask}
+                                beginDelete ={this.beginDelete}
 
                                />
-                            } else {
+                            } else if (this.state.taskBeingEdited._id === t._id ) {
                                 return <EditTask key={t._id} 
                                                  modifiedDescription={this.state.modifiedTaskDescription}
                                                  updateFormField={this.updateFormField}
                                                  processUpdate={this.processUpdate}/>
                                           
+                            } else{ return <DeleteTask 
+                            task ={t}
+                            delete={this.delete}
+                            cancelDelete={this.cancelDelete}>
+
+                            </DeleteTask>
+
+                
+
                             }
                         })
                     }
