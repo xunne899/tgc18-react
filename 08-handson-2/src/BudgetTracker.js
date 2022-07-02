@@ -1,6 +1,7 @@
 import React from 'react'
 import EditExpense from './EditExpense'
 import Expenses from './Expenses'
+import DeleteExpense from './DeleteExpense'
 
 
 export default class BudgetTracker extends React.Component{
@@ -76,6 +77,18 @@ updateExpense = () =>{
 
 }
 
+beginDelete =(expense)=>{
+    this.setState({
+        expenseBeingDeleted : expense
+    })
+}
+
+cancelDelete = () =>{
+    this.setState({
+        expenseBeingDeleted: null
+    })
+}
+
 render(){
     return(
         <React.Fragment>
@@ -90,7 +103,21 @@ render(){
                         updateFormField={this.updateFormField}
                         updateExpense={this.updateExpense}
                     />
-                )}else{
+                )}else if (this.state.expenseBeingDeleted !== null && this.state.expenseBeingDeleted._id === expense._id) {
+                    return (
+                        <DeleteExpense
+                            expense={expense}
+                            description={expense.description}
+                            processDelete={() => {
+                                this.processDelete(expense)
+                            }}
+                            cancelDelete={() => {
+                                this.cancelDelete(expense)
+                            }}
+                        />
+                    )
+                }
+                else{
                     return(
                         <Expenses 
                         _id={expense._id}
@@ -99,8 +126,10 @@ render(){
                         expense ={expense}
                         beginEdit={()=>{
                             this.beginEdit(expense)
-                        }}/>
-                    
+                        }}
+                         beginDelete={()=>{
+                            this.beginDelete(expense)
+                         }}/>
                         )}
                     //     <NewExpense
                     //     newExpenseDescription={this.newExpenseDescription}
