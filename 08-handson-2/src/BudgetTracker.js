@@ -65,6 +65,7 @@ updateExpense = () =>{
     }
 
     let index = this.state.expenses.findIndex(e=> e._id === modifiedExpense._id)
+    console.log(index)
     // clone
     let cloned = this.state.expenses.slice()
     //modify 
@@ -77,9 +78,24 @@ updateExpense = () =>{
 
 }
 
-beginDelete =(expense)=>{
+beginDelete =(e)=>{
     this.setState({
-        expenseBeingDeleted : expense
+        expenseBeingDeleted : e
+    })
+}
+
+
+processDelete = (ex) =>{
+    let index = this.state.expenses.findIndex(e=> e._id === ex._id)
+    console.log(index)
+    const cloned =[
+        ...this.state.expenses.slice(0,index),
+        ...this.state.expenses.slice(index+1)
+    ]
+
+
+    this.setState({
+        expenses:cloned
     })
 }
 
@@ -106,7 +122,7 @@ render(){
                 )}else if (this.state.expenseBeingDeleted !== null && this.state.expenseBeingDeleted._id === expense._id) {
                     return (
                         <DeleteExpense
-                            expense={expense}
+                            // expense={expense}
                             description={expense.description}
                             processDelete={() => {
                                 this.processDelete(expense)
@@ -123,7 +139,7 @@ render(){
                         _id={expense._id}
                         description={expense.description}
                         cost ={expense.cost}
-                        expense ={expense}
+                        // expense ={expense}
                         beginEdit={()=>{
                             this.beginEdit(expense)
                         }}
