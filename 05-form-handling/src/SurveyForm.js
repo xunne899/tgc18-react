@@ -36,7 +36,8 @@ export default class SurveyForm extends React.Component{
                     <input type="text"
                     className="form-control"
                     value={this.state.name}
-                    onChange={this.updateName}/>
+                    onChange={this.updateName}
+                    />
                 </div>
                 <div>
                     <label>Email:</label>
