@@ -29,7 +29,7 @@ export default class BudgetTracker extends React.Component{
             {
                 _id:5,
                 description:'Shoes',
-                cost: 15500
+                cost: 155
             }
         ],
         expenseBeingEdited: null,
