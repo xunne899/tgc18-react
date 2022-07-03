@@ -168,9 +168,6 @@ export default class TaskList extends React.Component {
                                     delete={this.beginDeleteTask}
                                 />
 
-
-
-
                             }
                         })
                     }
