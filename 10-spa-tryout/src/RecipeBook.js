@@ -1,6 +1,7 @@
 import React from 'react'
 import AddNew from './pages/AddNew'
 import Listing from './pages/Listing'
+import DeleteList from './pages/DeleteList'
 import axios from 'axios'
 
 export default class RecipeBook extends React.Component {
@@ -64,6 +65,14 @@ export default class RecipeBook extends React.Component {
     //         tasks: modified
     //     })
     // }
+    
+
+    beginDelete =(e)=>{
+        this.setState({
+            listBeingDeleted : e
+        })
+    }
+
 
     processDelete =  (list) => {
         const index = this.state.data.findIndex(t => t._id === list._id);
@@ -118,28 +127,23 @@ export default class RecipeBook extends React.Component {
     }
 
     renderContent() {
-        this.state.data.map(list => {
-            if (this.state.expenseBeingDeleted !== null && this.state.expenseBeingDeleted._id === list._id) {
-                return (
-                    <DeleteExpense
-                        // expense={expense}
-                        description={expense.description}
-                        processDelete={() => {
-                            this.processDelete(expense)
-                        }}
-                        cancelDelete={() => {
-                            this.cancelDelete(expense)
-                        }}
-                    />
-                )
-            }
-        if (this.state.active === 'listing') {
-            return <Listing data={this.state.data}
-                edit={this.edit}
-                processDelete={this.processDelete} />
-                
-        } 
-        else if (this.state.active === 'add-new') {
+        // this.state.data.map(list => {
+        //     if (this.state.active === 'listing' && this.state.listBeingDeleted !== null && this.state.listBeingDeleted._id === list._id) {
+        //         return (
+        //             <DeleteList
+        //                 // expense={expense}
+        //                 title={list.title}
+        //                 processDelete={() => {
+        //                     this.processDelete(list)
+        //                 }}
+        //                 // cancelDelete={() => {
+        //                 //     this.cancelDelete(list)
+        //                 // }}
+        //             />
+        //         )
+        //     }
+  
+         if (this.state.active === 'add-new') {
             return <AddNew
                 newTitle={this.state.newTitle}
                 newIngredients={this.state.newIngredients}
@@ -151,8 +155,17 @@ export default class RecipeBook extends React.Component {
                 addNew={this.processAddNew}
             />
         }
-    }
-        )}
+
+        // else {
+          else  if ( this.state.active === 'listing') {
+            return <Listing data={this.state.data}
+                edit={this.edit}
+                beginDelete={this.beginDelete} />
+                
+        } 
+    
+        }
+        // )}
 
     changePage(page) {
         this.setState({

@@ -20,7 +20,7 @@ export default function Listing(props){
                              onClick={props.edit}
                              >Edit</button>
                              <button className="btn btn-danger mt-3 ms-2"
-                             onClick={props.processDelete}
+                             onClick={props.beginDelete}
                              >Delete</button>
                              </div>
                         </div>
