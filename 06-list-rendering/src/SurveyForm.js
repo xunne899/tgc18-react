@@ -42,6 +42,7 @@ export default class SurveyForm extends React.Component {
             'display':'Indonesia',
             'value':'indonesia'
         }
+        
     ]
 
     fruits = [
