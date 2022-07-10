@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 export default class Listing extends React.Component{
-    url ="https://8888-xunne899-dwadrecipeapi-byefmbidvc9.ws-us47.gitpod.io/"
+    url ="https://8888-xunne899-dwadrecipeapi-byefmbidvc9.ws-us53.gitpod.io/"
 
     state = {
 

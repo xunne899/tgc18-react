@@ -3,7 +3,7 @@ import React from 'react'
 
 export default class AddRecipe extends React.Component{
     
-    url ="https://8888-xunne899-dwadrecipeapi-byefmbidvc9.ws-us47.gitpod.io/"
+    url ="https://8888-xunne899-dwadrecipeapi-byefmbidvc9.ws-us53.gitpod.io/"
 
     
     
